@@ -1,7 +1,5 @@
 # AI Document QA 🤎
 
-<!-- Light Brown Animated Header -->
-
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E8D8C3,50:B89B7A,100:8B6F55&height=220&section=header&text=AI%20Document%20QA&fontSize=48&fontColor=3E3025&animation=fadeIn&fontAlignY=38&desc=Intelligent%20Document%20Question%20Answering%20System&descAlignY=60&descSize=18" width="100%"/>
 </p>
@@ -403,6 +401,10 @@ Through this project, I learned how to build a practical AI document assistant u
 **AI & Data Science Student | ML Developer | Python Enthusiast**
 
 ---
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Georgia&size=20&duration=3000&pause=1000&color=8B6F55&center=true&vCenter=true&width=520&lines=Developed+by+Hania+Eman+%E2%9C%A8;AI+%26+Data+Science+Student;ML+Developer+%7C+Python+Enthusiast" />
+</p>
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:8B6F55,50:B89B7A,100:E8D8C3&height=130&section=footer&text=AI%20Document%20QA%20%E2%80%94%20Retrieve%20%E2%80%A2%20Understand%20%E2%80%A2%20Generate&fontSize=22&fontColor=3E3025&animation=fadeIn" width="100%"/>
