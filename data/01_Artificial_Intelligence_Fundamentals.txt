@@ -1,0 +1,19 @@
+ARTIFICIAL INTELLIGENCE FUNDAMENTALS
+
+Overview
+Artificial Intelligence (AI) is a field of computer science focused on building systems that can perform tasks that normally require human intelligence. These tasks include understanding language, recognizing patterns, making predictions, solving problems, and supporting decisions.
+
+Key Areas
+Machine learning allows systems to learn patterns from data. Natural language processing focuses on human language. Computer vision works with images and video. Robotics combines software intelligence with physical systems.
+
+How AI Systems Work
+A typical AI system receives data, processes that data, applies a model or rules, and produces an output. Modern systems often improve when they are trained on larger and better-quality datasets.
+
+Benefits
+AI can automate repetitive work, analyze large datasets, improve decision support, and provide personalized services.
+
+Limitations
+AI systems can make incorrect predictions, inherit bias from training data, and fail when the input differs significantly from the data used during development.
+
+Conclusion
+AI is best understood as a broad field that includes machine learning, deep learning, language technologies, vision, and intelligent decision-making.

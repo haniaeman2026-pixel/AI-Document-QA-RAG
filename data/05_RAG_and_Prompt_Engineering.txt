@@ -1,0 +1,22 @@
+RAG AND PROMPT ENGINEERING
+
+Overview
+Retrieval-Augmented Generation (RAG) combines information retrieval with language generation. Instead of asking a language model to answer only from its internal knowledge, a RAG system first retrieves relevant information from a selected knowledge base.
+
+RAG Pipeline
+A basic RAG pipeline contains document loading, chunking, embedding generation, vector storage, retrieval, prompt construction, and answer generation.
+
+Chunking
+Documents are divided into smaller sections called chunks. Good chunking preserves enough context while keeping retrieved information focused.
+
+Prompt Engineering
+Prompt engineering is the practice of designing instructions that guide a language model toward useful outputs. Zero-shot prompting gives instructions without examples. Few-shot prompting provides examples. Role-based prompting assigns a role or perspective to the model.
+
+Grounded Answers
+A RAG prompt can instruct the model to answer only from retrieved context. If the required information is absent, the model should clearly state that it was not found in the provided documents.
+
+Why RAG Helps
+RAG can improve relevance, provide source-aware answers, and make it possible to use private or domain-specific documents without retraining the language model.
+
+Conclusion
+RAG and prompt engineering work together: retrieval supplies relevant evidence, while a carefully designed prompt guides the model to use that evidence correctly.

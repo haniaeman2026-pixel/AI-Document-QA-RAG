@@ -1,0 +1,22 @@
+EMBEDDINGS AND SEMANTIC SEARCH
+
+Overview
+An embedding is a numerical representation of information. Text embeddings convert words, sentences, or documents into vectors so that a computer can compare their meaning mathematically.
+
+Vector Representation
+A text item is represented by a list of numerical values called a vector. Texts with related meanings tend to have vectors that are close to each other in an embedding space.
+
+Similarity
+Cosine similarity is commonly used to compare vectors. A higher similarity generally means that two text representations are more closely related in meaning.
+
+Semantic Search
+Semantic search retrieves information according to meaning rather than requiring an exact keyword match. For example, a question about automobile costs may retrieve a passage that uses the term vehicle expenses.
+
+Embedding Models
+Sentence-transformer models are commonly used to generate sentence and paragraph embeddings. The model transforms text into fixed-length vectors that can be stored in a vector database.
+
+Advantages
+Semantic search can handle synonyms, related concepts, and natural-language questions better than simple keyword matching.
+
+Conclusion
+Embeddings provide the numerical foundation for many modern search, recommendation, and retrieval systems.

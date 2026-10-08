@@ -1,0 +1,20 @@
+MACHINE LEARNING BASICS
+
+Overview
+Machine Learning (ML) is a branch of AI in which computer systems learn useful patterns from data instead of relying entirely on manually written rules.
+
+Main Types
+Supervised learning uses labeled examples. Classification predicts categories such as spam or not spam. Regression predicts numerical values such as house prices.
+
+Unsupervised learning works with data that does not have target labels. Clustering groups similar observations, while dimensionality reduction can represent complex data using fewer features.
+
+Reinforcement learning involves an agent interacting with an environment. The agent receives rewards or penalties and learns a strategy that improves long-term performance.
+
+Typical Workflow
+A machine learning workflow usually includes collecting data, cleaning it, exploring the dataset, selecting features, splitting data, training a model, evaluating performance, and improving the model.
+
+Evaluation
+Classification can use accuracy, precision, recall, and F1-score. Regression can use metrics such as MAE and RMSE.
+
+Conclusion
+Good machine learning depends not only on the algorithm but also on data quality, appropriate evaluation, and careful problem definition.

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Document QA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div>
+                <div class="brand-name">DocuMind</div>
+                <div class="brand-subtitle">AI Knowledge Assistant</div>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-label">WORKSPACE</div>
+
+            <button class="nav-item active" data-page="dashboard">
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item" data-page="documents">
+                <span class="nav-icon">▤</span>
+                <span>Documents</span>
+            </button>
+
+            <button class="nav-item" data-page="ask">
+                <span class="nav-icon">✦</span>
+                <span>Ask AI</span>
+            </button>
+
+            <button class="nav-item" data-page="prompt-lab">
+                <span class="nav-icon">◇</span>
+                <span>Prompt Lab</span>
+            </button>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sidebar-label">SYSTEM</div>
+
+            <button class="nav-item" data-page="system">
+                <span class="nav-icon">⚙</span>
+                <span>System</span>
+            </button>
+        </div>
+
+        <div class="sidebar-bottom">
+
+            <div class="sidebar-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Online</strong>
+                    <small>RAG engine ready</small>
+                </div>
+            </div>
+
+            <div class="sidebar-footer">
+                <span>AI Document QA</span>
+                <span>v1.0</span>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <div class="breadcrumb">Workspace / <span id="breadcrumb-page">Dashboard</span></div>
+                <h1 id="page-title">Knowledge Workspace</h1>
+            </div>
+
+            <div class="topbar-actions">
+
+                <div class="system-pill">
+                    <span class="status-dot"></span>
+                    <span>System Online</span>
+                </div>
+
+                <button class="top-upload-btn" id="open-upload">
+                    <span>＋</span>
+                    Add Documents
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section class="page active-page" id="page-dashboard">
+
+            <div class="hero">
+
+                <div class="hero-content">
+
+                    <div class="eyebrow">
+                        <span>✦</span>
+                        AI-POWERED DOCUMENT INTELLIGENCE
+                    </div>
+
+                    <h2>
+                        Ask your documents.<br>
+                        <em>Get intelligent answers.</em>
+                    </h2>
+
+                    <p>
+                        Upload your documents and let semantic search,
+                        embeddings and AI work together to find the
+                        information you need.
+                    </p>
+
+                    <button class="hero-action" data-page-target="ask">
+                        Start Asking
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+                <div class="hero-visual">
+
+                    <div class="visual-orbit orbit-one"></div>
+                    <div class="visual-orbit orbit-two"></div>
+
+                    <div class="visual-card">
+
+                        <div class="visual-card-top">
+                            <span class="mini-badge">AI</span>
+                            <span class="visual-live">● LIVE</span>
+                        </div>
+
+                        <div class="visual-question">
+                            What information is available
+                            in my documents?
+                        </div>
+
+                        <div class="visual-answer">
+                            <span class="answer-line"></span>
+                            <span class="answer-line short"></span>
+                            <span class="answer-line medium"></span>
+                        </div>
+
+                        <div class="visual-source">
+                            <span>Source</span>
+                            <strong>document.pdf · p. 4</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <div class="stat-icon brown">▤</div>
+                    <div>
+                        <span class="stat-label">Documents</span>
+                        <strong id="stat-documents">0</strong>
+                        <small>Knowledge sources</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon beige">◈</div>
+                    <div>
+                        <span class="stat-label">Indexed Chunks</span>
+                        <strong id="stat-chunks">—</strong>
+                        <small>Searchable content</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon brown">◎</div>
+                    <div>
+                        <span class="stat-label">Embedding Model</span>
+                        <strong class="small-value" id="stat-embedding">
+                            MiniLM
+                        </strong>
+                        <small>Sentence Transformer</small>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon beige">✦</div>
+                    <div>
+                        <span class="stat-label">Top K</span>
+                        <strong>3</strong>
+                        <small>Retrieved sources</small>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD LOWER GRID -->
+
+            <div class="dashboard-grid">
+
+                <!-- Recent Documents -->
+
+                <div class="panel documents-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="panel-kicker">KNOWLEDGE BASE</span>
+                            <h3>Recent Documents</h3>
+                        </div>
+
+                        <button class="text-button" data-page-target="documents">
+                            View all →
+                        </button>
+                    </div>
+
+                    <div id="recent-documents" class="recent-documents">
+                        <div class="empty-state small">
+                            <div class="empty-icon">▤</div>
+                            <p>No documents indexed yet.</p>
+                            <button class="outline-btn" id="dashboard-upload">
+                                Upload Document
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- RAG Pipeline -->
+
+                <div class="panel pipeline-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <span class="panel-kicker">PROCESS</span>
+                            <h3>RAG Pipeline</h3>
+                        </div>
+                    </div>
+
+                    <div class="pipeline">
+
+                        <div class="pipeline-item">
+                            <span class="pipeline-number">01</span>
+                            <div>
+                                <strong>Documents</strong>
+                                <small>PDF / TXT / MD</small>
+                            </div>
+                            <span class="pipeline-check">✓</span>
+                        </div>
+
+                        <div class="pipeline-line"></div>
+
+                        <div class="pipeline-item">
+                            <span class="pipeline-number">02</span>
+                            <div>
+                                <strong>Chunking</strong>
+                                <small>Text segmentation</small>
+                            </div>
+                            <span class="pipeline-check">✓</span>
+                        </div>
+
+                        <div class="pipeline-line"></div>
+
+                        <div class="pipeline-item">
+                            <span class="pipeline-number">03</span>
+                            <div>
+                                <strong>Embeddings</strong>
+                                <small>Semantic vectors</small>
+                            </div>
+                            <span class="pipeline-check">✓</span>
+                        </div>
+
+                        <div class="pipeline-line"></div>
+
+                        <div class="pipeline-item">
+                            <span class="pipeline-number">04</span>
+                            <div>
+                                <strong>ChromaDB</strong>
+                                <small>Vector storage</small>
+                            </div>
+                            <span class="pipeline-check">✓</span>
+                        </div>
+
+                        <div class="pipeline-line"></div>
+
+                        <div class="pipeline-item">
+                            <span class="pipeline-number">05</span>
+                            <div>
+                                <strong>AI Answer</strong>
+                                <small>Grounded response</small>
+                            </div>
+                            <span class="pipeline-check">✓</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DOCUMENTS ================= -->
+
+        <section class="page" id="page-documents">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="panel-kicker">KNOWLEDGE BASE</span>
+                    <h2>Document Library</h2>
+                    <p>Manage the documents used by your AI knowledge assistant.</p>
+                </div>
+
+                <button class="primary-btn" id="documents-upload">
+                    ＋ Upload Documents
+                </button>
+
+            </div>
+
+
+            <div class="document-toolbar">
+
+                <div class="search-box">
+                    <span>⌕</span>
+                    <input
+                        type="text"
+                        id="document-search"
+                        placeholder="Search documents..."
+                    >
+                </div>
+
+                <select id="document-filter">
+                    <option value="all">All files</option>
+                    <option value="pdf">PDF</option>
+                    <option value="txt">TXT</option>
+                    <option value="md">Markdown</option>
+                </select>
+
+                <button class="secondary-btn" id="refresh-documents">
+                    ↻ Refresh
+                </button>
+
+            </div>
+
+
+            <div class="table-panel">
+
+                <div class="table-head">
+                    <span>DOCUMENT</span>
+                    <span>TYPE</span>
+                    <span>STATUS</span>
+                    <span>ACTION</span>
+                </div>
+
+                <div id="document-list" class="document-list">
+
+                    <div class="table-empty">
+                        <div class="empty-icon">▤</div>
+                        <h3>No documents found</h3>
+                        <p>Upload PDF, TXT or Markdown documents to begin.</p>
+                        <button class="primary-btn" id="empty-upload">
+                            Upload Documents
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ASK AI ================= -->
+
+        <section class="page" id="page-ask">
+
+            <div class="section-heading compact">
+
+                <div>
+                    <span class="panel-kicker">AI KNOWLEDGE ASSISTANT</span>
+                    <h2>Ask Your Documents</h2>
+                    <p>Ask questions and receive answers grounded in your indexed documents.</p>
+                </div>
+
+                <div class="technique-selector">
+
+                    <label>Prompt Technique</label>
+
+                    <select id="technique">
+                        <option value="zero_shot">Zero-Shot</option>
+                        <option value="few_shot">Few-Shot</option>
+                        <option value="role_based">Role-Based</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="ask-layout">
+
+                <!-- CHAT -->
+
+                <div class="chat-panel">
+
+                    <div class="chat-header">
+                        <div class="ai-avatar">✦</div>
+
+                        <div>
+                            <strong>Document AI</strong>
+                            <span>Answers are generated from retrieved context</span>
+                        </div>
+
+                        <button class="clear-btn" id="clear-chat">
+                            Clear
+                        </button>
+                    </div>
+
+
+                    <div id="chat-messages" class="chat-messages">
+
+                        <div class="welcome-message">
+
+                            <div class="welcome-icon">✦</div>
+
+                            <h3>What would you like to know?</h3>
+
+                            <p>
+                                Ask a question about any information
+                                contained in your indexed documents.
+                            </p>
+
+                            <div class="suggestion-list">
+
+                                <button class="suggestion">
+                                    Summarize the main topic of the document
+                                </button>
+
+                                <button class="suggestion">
+                                    What are the key findings?
+                                </button>
+
+                                <button class="suggestion">
+                                    Explain the important concepts
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="question-area">
+
+                        <textarea
+                            id="question-input"
+                            rows="2"
+                            placeholder="Ask a question about your documents..."
+                        ></textarea>
+
+                        <div class="question-bottom">
+
+                            <span>
+                                <span class="kbd">Enter</span>
+                                to ask
+                            </span>
+
+                            <button class="ask-btn" id="ask-button">
+                                Ask AI
+                                <span>→</span>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SOURCES -->
+
+                <aside class="sources-panel">
+
+                    <div class="sources-header">
+                        <div>
+                            <span class="panel-kicker">RETRIEVAL</span>
+                            <h3>Sources</h3>
+                        </div>
+
+                        <span class="source-count" id="source-count">0</span>
+                    </div>
+
+                    <div id="sources-list" class="sources-list">
+
+                        <div class="source-empty">
+                            <div>◈</div>
+                            <p>
+                                Retrieved document chunks will
+                                appear here after you ask a question.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= PROMPT LAB ================= -->
+
+        <section class="page" id="page-prompt-lab">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="panel-kicker">PROMPT ENGINEERING</span>
+                    <h2>Prompt Comparison Lab</h2>
+                    <p>
+                        Compare Zero-Shot, Few-Shot and Role-Based
+                        prompting using the same question.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="prompt-question-panel">
+
+                <label>Test Question</label>
+
+                <div class="prompt-input-row">
+
+                    <textarea
+                        id="compare-question"
+                        rows="3"
+                        placeholder="Enter a question to compare the three prompting techniques..."
+                    ></textarea>
+
+                    <button class="primary-btn" id="compare-button">
+                        Compare
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="comparison-grid">
+
+                <div class="comparison-card">
+
+                    <div class="comparison-header">
+                        <div class="comparison-number">01</div>
+                        <div>
+                            <span>TECHNIQUE</span>
+                            <h3>Zero-Shot</h3>
+                        </div>
+                    </div>
+
+                    <div class="comparison-body" id="zero-shot-result">
+                        <div class="comparison-placeholder">
+                            Run a comparison to see the result.
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-card featured">
+
+                    <div class="featured-label">RECOMMENDED FOR CONTEXT</div>
+
+                    <div class="comparison-header">
+                        <div class="comparison-number">02</div>
+                        <div>
+                            <span>TECHNIQUE</span>
+                            <h3>Few-Shot</h3>
+                        </div>
+                    </div>
+
+                    <div class="comparison-body" id="few-shot-result">
+                        <div class="comparison-placeholder">
+                            Run a comparison to see the result.
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <div class="comparison-card">
+
+                    <div class="comparison-header">
+                        <div class="comparison-number">03</div>
+                        <div>
+                            <span>TECHNIQUE</span>
+                            <h3>Role-Based</h3>
+                        </div>
+                    </div>
+
+                    <div class="comparison-body" id="role-based-result">
+                        <div class="comparison-placeholder">
+                            Run a comparison to see the result.
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= SYSTEM ================= -->
+
+        <section class="page" id="page-system">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="panel-kicker">CONFIGURATION</span>
+                    <h2>System Information</h2>
+                    <p>Current configuration of your document QA pipeline.</p>
+                </div>
+
+            </div>
+
+
+            <div class="system-grid">
+
+                <div class="system-card">
+                    <span>AI MODEL</span>
+                    <strong id="system-model">Loading...</strong>
+                    <small>Large language model</small>
+                </div>
+
+                <div class="system-card">
+                    <span>EMBEDDING MODEL</span>
+                    <strong>all-MiniLM-L6-v2</strong>
+                    <small>Sentence Transformer</small>
+                </div>
+
+                <div class="system-card">
+                    <span>VECTOR DATABASE</span>
+                    <strong>ChromaDB</strong>
+                    <small>Persistent vector storage</small>
+                </div>
+
+                <div class="system-card">
+                    <span>TOP K</span>
+                    <strong>3</strong>
+                    <small>Semantic search results</small>
+                </div>
+
+            </div>
+
+
+            <div class="system-status-panel">
+
+                <div class="system-status-header">
+                    <div>
+                        <span class="panel-kicker">HEALTH</span>
+                        <h3>Application Status</h3>
+                    </div>
+
+                    <span class="large-status">
+                        <span class="status-dot"></span>
+                        <span id="health-text">Checking...</span>
+                    </span>
+                </div>
+
+                <div class="health-grid">
+
+                    <div>
+                        <span>API</span>
+                        <strong id="health-api">Checking</strong>
+                    </div>
+
+                    <div>
+                        <span>RAG Engine</span>
+                        <strong id="health-rag">Ready</strong>
+                    </div>
+
+                    <div>
+                        <span>Vector Store</span>
+                        <strong>ChromaDB</strong>
+                    </div>
+
+                    <div>
+                        <span>Supported Files</span>
+                        <strong>PDF · TXT · MD</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= UPLOAD MODAL ================= -->
+
+<div class="modal-overlay" id="upload-modal">
+
+    <div class="upload-modal">
+
+        <button class="modal-close" id="close-upload">×</button>
+
+        <div class="modal-icon">↑</div>
+
+        <span class="panel-kicker">KNOWLEDGE BASE</span>
+
+        <h2>Add Documents</h2>
+
+        <p>
+            Upload PDF, TXT or Markdown files.
+            Maximum file size is 15 MB per file.
+        </p>
+
+
+        <div class="drop-zone" id="drop-zone">
+
+            <input
+                type="file"
+                id="file-input"
+                multiple
+                accept=".pdf,.txt,.md"
+                hidden
+            >
+
+            <div class="drop-icon">↑</div>
+
+            <strong>Drop your files here</strong>
+
+            <span>or click to browse</span>
+
+            <small>PDF, TXT, MD · Maximum 15 MB</small>
+
+        </div>
+
+
+        <div id="selected-files" class="selected-files"></div>
+
+
+        <div class="upload-progress" id="upload-progress">
+
+            <div class="progress-info">
+                <span id="progress-text">Uploading...</span>
+                <span id="progress-percent">0%</span>
+            </div>
+
+            <div class="progress-track">
+                <div id="progress-bar"></div>
+            </div>
+
+        </div>
+
+
+        <div class="modal-actions">
+
+            <button class="secondary-btn" id="cancel-upload">
+                Cancel
+            </button>
+
+            <button class="primary-btn" id="upload-button">
+                Upload & Index
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast-container"></div>
+
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>

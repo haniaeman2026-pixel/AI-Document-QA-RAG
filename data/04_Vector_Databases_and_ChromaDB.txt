@@ -1,0 +1,22 @@
+VECTOR DATABASES AND CHROMADB
+
+Overview
+A vector database stores numerical vectors together with useful metadata. It is designed to efficiently find vectors that are similar to a query vector.
+
+Why Vector Databases
+Traditional databases are excellent for structured values and exact conditions. Vector databases are useful when the goal is similarity-based retrieval.
+
+ChromaDB
+ChromaDB is a vector database commonly used in AI and retrieval applications. It can store embeddings, document text, and metadata such as source names and page numbers.
+
+Collections
+A ChromaDB collection groups related records. Each record can contain an ID, embedding, document content, and metadata.
+
+Query Process
+First, a user question is converted into an embedding. The vector database compares that query vector with stored vectors and returns the closest matches.
+
+Distance and Similarity
+A vector database may return a distance value. The interpretation depends on the selected distance metric. In a cosine-based setup, smaller distance generally indicates greater similarity.
+
+Conclusion
+Vector databases make semantic retrieval practical by organizing embeddings for efficient nearest-neighbor search.
