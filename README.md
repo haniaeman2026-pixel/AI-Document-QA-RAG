@@ -1,294 +1,418 @@
 <div align="center">
 
-# ✨ AI Document QA
-
-### 🤖 Intelligent Document Question Answering with RAG
-
-<p>
-  <strong>Ask questions. Retrieve relevant knowledge. Get context-aware AI answers.</strong>
-</p>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:111111,50:D4AF37,100:111111&height=220&section=header&text=AI%20Document%20QA&fontSize=48&fontColor=FFFFFF&animation=fadeIn&fontAlignY=38&desc=Intelligent%20Document%20Question%20Answering%20System&descAlignY=60&descSize=18" width="100%"/>
 
 <br>
 
-<img src="https://img.shields.io/badge/Python-FFD700?style=for-the-badge&logo=python&logoColor=111111" />
-<img src="https://img.shields.io/badge/FastAPI-FFD700?style=for-the-badge&logo=fastapi&logoColor=111111" />
-<img src="https://img.shields.io/badge/RAG-FFD700?style=for-the-badge&logoColor=111111" />
-<img src="https://img.shields.io/badge/ChromaDB-FFD700?style=for-the-badge&logoColor=111111" />
-<img src="https://img.shields.io/badge/LLM-FFD700?style=for-the-badge&logoColor=111111" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=21&duration=2800&pause=900&color=D4AF37&center=true&vCenter=true&width=750&lines=Retrieval-Augmented+Generation;Semantic+Search+%7C+Embeddings+%7C+Vectors;ChromaDB+%7C+Prompt+Engineering+%7C+LLMs;Ask+Questions.+Retrieve+Knowledge.+Generate+Answers." />
 
 <br><br>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&duration=2800&pause=900&color=FFD700&center=true&vCenter=true&width=700&lines=AI-Powered+Document+Assistant;Retrieval-Augmented+Generation;Semantic+Search+%7C+Embeddings+%7C+ChromaDB;Prompt+Engineering+%7C+Context-Aware+Answers" />
+<img src="https://img.shields.io/badge/Python-D4AF37?style=for-the-badge&logo=python&logoColor=111111"/>
+<img src="https://img.shields.io/badge/FastAPI-D4AF37?style=for-the-badge&logo=fastapi&logoColor=111111"/>
+<img src="https://img.shields.io/badge/RAG-D4AF37?style=for-the-badge&logoColor=111111"/>
+<img src="https://img.shields.io/badge/ChromaDB-D4AF37?style=for-the-badge&logoColor=111111"/>
+<img src="https://img.shields.io/badge/LLM-D4AF37?style=for-the-badge&logoColor=111111"/>
 
 </div>
 
 ---
 
-## 🌟 About The Project
+# 🤖 About The Project
 
-**AI Document QA** is an AI-powered knowledge assistant that allows users to ask questions about their own documents.
+**AI Document QA** is an AI-powered document question-answering system that allows users to ask questions about information contained in their documents.
 
-Instead of sending an entire document to an LLM, the system:
+The system uses **Retrieval-Augmented Generation (RAG)** to retrieve relevant document content before generating an answer with an LLM.
 
-**loads → chunks → embeds → stores → retrieves → generates**
+Instead of asking the LLM to answer from general knowledge, the system first searches the document knowledge base and provides relevant context to the model.
 
-the most relevant information before producing an answer.
-
-The project demonstrates practical implementation of:
-
-* 🧠 Embeddings
-* 📐 Vector representations
-* 🔎 Semantic Search
-* 🗄️ ChromaDB
-* 🔗 Retrieval-Augmented Generation (RAG)
-* ✍️ Prompt Engineering
-* 🤖 LLM-based Question Answering
-
----
-
-## ⚡ How It Works
+### Core Pipeline
 
 ```text
-                    📄 DOCUMENTS
-                         │
-                         ▼
-                ┌─────────────────┐
-                │  Text Extraction │
-                └────────┬────────┘
-                         │
-                         ▼
-                   ✂️ Chunking
-                         │
-                         ▼
-                  🧠 Embeddings
-                         │
-                         ▼
-                📐 Vector Representations
-                         │
-                         ▼
-                  🗄️ ChromaDB
-                         │
-                         │
-              ┌──────────┘
-              │
-              ▼
-        ❓ USER QUESTION
-              │
-              ▼
-       🧠 Question Embedding
-              │
-              ▼
-        🔎 Semantic Search
-              │
-              ▼
-       ⭐ Top Relevant Chunks
-              │
-              ▼
-       ✍️ Prompt + Context
-              │
-              ▼
-             🤖 LLM
-              │
-              ▼
-        💬 FINAL ANSWER
+Documents
+    ↓
+Text Extraction
+    ↓
+Text Chunking
+    ↓
+Embeddings
+    ↓
+Vector Storage
+    ↓
+Semantic Search
+    ↓
+Relevant Context
+    ↓
+Prompt Engineering
+    ↓
+LLM
+    ↓
+Final Answer
 ```
 
 ---
 
-## 🧩 Core Concepts
+# ✨ Key Features
 
-### 🧠 Embeddings
+* 📄 Document-based Question Answering
+* 🧠 Sentence-Transformer Embeddings
+* 📐 Vector Representations
+* 🔎 Semantic Search
+* 🗄️ ChromaDB Vector Database
+* 🔗 Retrieval-Augmented Generation
+* ✂️ Document Chunking
+* ⭐ Top-K Relevant Chunk Retrieval
+* ✍️ Prompt Engineering
+* 0️⃣ Zero-Shot Prompting
+* 🎯 Few-Shot Prompting
+* 👨‍💻 Role-Based Prompting
+* 🤖 LLM-powered Answers
+* 🌐 FastAPI Backend
+* 💻 Clean Web Interface
 
-Embeddings convert text into numerical representations that capture its semantic meaning.
+---
+
+# 🧠 How The AI Pipeline Works
+
+## 1. 📄 Document Processing
+
+The system loads documents and extracts their text.
+
+Supported document types include:
+
+```text
+PDF
+TXT
+Markdown
+```
+
+---
+
+## 2. ✂️ Chunking
+
+Large documents are divided into smaller pieces called **chunks**.
+
+```text
+Large Document
+      ↓
+ ┌────────────┐
+ │  Chunk 1   │
+ ├────────────┤
+ │  Chunk 2   │
+ ├────────────┤
+ │  Chunk 3   │
+ ├────────────┤
+ │    ...     │
+ └────────────┘
+```
+
+Chunking makes document retrieval more efficient because the system can search smaller sections instead of processing the entire document every time.
+
+---
+
+# 🧠 Embeddings
+
+An **embedding** converts text into a numerical representation that captures its semantic meaning.
 
 For example:
 
 ```text
 "What is RAG?"
-       ↓
+      ↓
 Embedding Model
-       ↓
-[0.21, -0.45, 0.78, ...]
+      ↓
+[0.21, -0.45, 0.78, 0.12, ...]
 ```
 
-These numerical representations allow the system to compare the meaning of different pieces of text.
+This numerical representation allows the system to compare the semantic similarity between a user's question and document chunks.
 
 ---
 
-### 📐 Vectors
+# 📐 Vectors
 
-A vector is the numerical representation produced from text through an embedding model.
-
-Similar meanings produce vectors that are closer in vector space.
-
-```text
-Document Chunk → Vector
-Question       → Vector
-                   ↓
-             Similarity Search
-```
-
----
-
-### 🔎 Semantic Search
-
-Instead of looking only for exact keywords, semantic search finds information based on **meaning**.
+The numerical representation produced by an embedding model is a **vector**.
 
 For example:
 
 ```text
-Question:
-"How does AI learn from information?"
-
-Document:
-"Machine learning algorithms improve
-their performance using training data."
+[0.21, -0.45, 0.78, 0.12]
 ```
 
-The wording is different, but the meaning is related.
+Similar pieces of text tend to have vectors that are close to each other in vector space.
 
-That is why semantic search can retrieve the relevant chunk.
+```text
+Question Vector
+       │
+       │  similarity
+       ▼
+Document Vector
+```
+
+This is the foundation of semantic search.
 
 ---
 
-### 🗄️ ChromaDB
+# 🔎 Semantic Search
+
+The system does not rely only on exact keyword matching.
+
+Instead, it searches for text that is **semantically similar** to the user's question.
+
+### Example
+
+**Question:**
+
+```text
+How does AI learn from data?
+```
+
+**Document text:**
+
+```text
+Machine learning algorithms improve their
+performance by learning from training data.
+```
+
+Even though the exact wording is different, the meanings are closely related.
+
+Semantic search can therefore retrieve the relevant information.
+
+---
+
+# 🗄️ ChromaDB
 
 **ChromaDB** is used as the vector database.
 
-It stores:
+It stores the processed document information and its vector representations.
+
+Conceptually:
 
 ```text
-Text Chunk
-    +
+Document Chunk
+      +
 Embedding
-    +
+      +
 Metadata
+      ↓
+   ChromaDB
 ```
 
-When a user asks a question, ChromaDB helps retrieve the most semantically relevant chunks.
+When the user asks a question, the question is converted into an embedding and compared against the stored vectors.
+
+The most relevant chunks are retrieved.
 
 ---
 
-### 🔗 RAG — Retrieval-Augmented Generation
+# 🔗 Retrieval-Augmented Generation
 
-RAG combines **retrieval** with **generation**.
+## What is RAG?
+
+**RAG = Retrieval-Augmented Generation**
+
+RAG combines two major processes:
+
+### Retrieval
+
+Find relevant information from the knowledge base.
 
 ```text
 Question
    ↓
-Retrieve relevant information
+Semantic Search
    ↓
-Add retrieved information as context
-   ↓
-Send context + question to LLM
-   ↓
-Generate grounded answer
+Relevant Chunks
 ```
 
-This helps the LLM answer using the information retrieved from the document knowledge base.
+### Generation
+
+Give the retrieved information to the LLM as context.
+
+```text
+Question
+   +
+Retrieved Context
+        ↓
+       LLM
+        ↓
+    Final Answer
+```
+
+Therefore:
+
+```text
+RAG
+=
+Retrieval
++
+Context Augmentation
++
+Generation
+```
 
 ---
 
-## ✍️ Prompt Engineering
+# ✍️ Prompt Engineering
 
-The project demonstrates multiple prompting approaches.
+Prompt Engineering means designing effective instructions for the LLM so that it produces the desired response.
 
-### 1. Zero-Shot Prompting
+This project demonstrates three prompting techniques.
+
+## 1. 0️⃣ Zero-Shot Prompting
 
 The model receives instructions without examples.
 
 ```text
-Answer the question using the provided context.
-```
-
-### 2. Few-Shot Prompting
-
-The model receives a small number of examples before answering.
-
-```text
-Example 1 → Question + Answer
-Example 2 → Question + Answer
-
-New Question → Answer
-```
-
-### 3. Role-Based Prompting
-
-The model is assigned a specific role.
-
-```text
-You are a technical document analyst.
 Answer the user's question using the provided context.
 ```
 
-These approaches can be compared using:
-
-* Accuracy
-* Clarity
-* Relevance
-
 ---
 
-## 📄 Supported Documents
+## 2. 🎯 Few-Shot Prompting
 
-The system is designed to work with:
+The model receives a few examples before answering the new question.
 
 ```text
-📕 PDF
-📄 TXT
-📝 Markdown
+Example 1:
+Question → Answer
+
+Example 2:
+Question → Answer
+
+New Question:
+Question → ?
 ```
 
-The documents are processed, divided into chunks and converted into embeddings before being stored in the vector database.
+The examples guide the model toward the desired response pattern.
 
 ---
 
-## ✨ Key Features
+## 3. 👨‍💻 Role-Based Prompting
 
-| Feature                   | Description                                      |
-| ------------------------- | ------------------------------------------------ |
-| 📄 Document Processing    | Process supported document formats               |
-| ✂️ Text Chunking          | Break large documents into searchable chunks     |
-| 🧠 Embeddings             | Convert text meaning into vectors                |
-| 🔎 Semantic Search        | Retrieve meaningfully relevant information       |
-| 🗄️ ChromaDB              | Store and search vector representations          |
-| ⭐ Top-K Retrieval         | Retrieve the most relevant chunks                |
-| 🤖 LLM Answers            | Generate context-aware responses                 |
-| ✍️ Prompt Engineering     | Compare different prompting strategies           |
-| 📊 Similarity Information | Display retrieved information and relevance data |
-| 💻 Web Interface          | Interact with the system through a simple UI     |
+The LLM is assigned a specific role.
+
+```text
+You are a technical document analyst.
+
+Answer the user's question using
+the provided document context.
+```
+
+The three approaches can be evaluated using:
+
+```text
+Accuracy
+Clarity
+Relevance
+```
 
 ---
 
-## 🛠️ Technology Stack
+# 🔄 Complete RAG Architecture
+
+```text
+                 📄 DOCUMENTS
+                       │
+                       ▼
+              ┌─────────────────┐
+              │ Text Extraction │
+              └────────┬────────┘
+                       │
+                       ▼
+                  ✂️ Chunking
+                       │
+                       ▼
+               🧠 Embeddings
+                       │
+                       ▼
+                 📐 Vectors
+                       │
+                       ▼
+                 🗄️ ChromaDB
+                       │
+                       │
+                       ▼
+              ❓ USER QUESTION
+                       │
+                       ▼
+             🧠 Question Embedding
+                       │
+                       ▼
+              🔎 Semantic Search
+                       │
+                       ▼
+              ⭐ Top Relevant Chunks
+                       │
+                       ▼
+             ✍️ Prompt + Context
+                       │
+                       ▼
+                     🤖 LLM
+                       │
+                       ▼
+                💬 FINAL ANSWER
+```
+
+---
+
+# 🆚 RAG vs Fine-Tuning
+
+RAG and fine-tuning are different approaches.
+
+| RAG                                     | Fine-Tuning                         |
+| --------------------------------------- | ----------------------------------- |
+| Retrieves external information          | Trains/adapts the model             |
+| Uses a knowledge base                   | Uses a training dataset             |
+| Knowledge can be updated easily         | New training may be required        |
+| Model weights normally remain unchanged | Model parameters are updated        |
+| Excellent for document QA               | Useful for behavior/task adaptation |
+
+### In this project
+
+We use **RAG instead of fine-tuning** because the main goal is to answer questions using information retrieved from the document knowledge base.
+
+---
+
+# 📊 Semantic Search vs Keyword Search
+
+| Keyword Search                          | Semantic Search               |
+| --------------------------------------- | ----------------------------- |
+| Matches words                           | Matches meaning               |
+| Exact terms are important               | Related wording can work      |
+| Can miss differently worded information | Better for conceptual queries |
+| Traditional search approach             | Embedding-based approach      |
+
+---
+
+# 🛠️ Technology Stack
 
 ### Backend
 
-* 🐍 Python
-* ⚡ FastAPI
-* 🤖 LLM API
+* Python
+* FastAPI
 
 ### AI / NLP
 
-* 🧠 Sentence Transformers
-* 🔢 Embeddings
-* 🔎 Semantic Search
-* 🔗 RAG
-* ✍️ Prompt Engineering
+* Sentence Transformers
+* Embeddings
+* Vector Representations
+* Semantic Search
+* Retrieval-Augmented Generation
+* Prompt Engineering
+* LLM
 
 ### Vector Database
 
-* 🗄️ ChromaDB
+* ChromaDB
 
 ### Frontend
 
-* 🌐 HTML
-* 🎨 CSS
-* ⚡ JavaScript
+* HTML
+* CSS
+* JavaScript
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```text
 AI-Document-QA/
@@ -325,57 +449,50 @@ AI-Document-QA/
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Installation & Setup
 
-### 1. Clone the Repository
+## 1. Clone the Repository
 
 ```bash
 git clone https://github.com/haniaeman2026-pixel/AI-Document-QA.git
-```
-
-```bash
 cd AI-Document-QA
 ```
 
-### 2. Create a Virtual Environment
+## 2. Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-### 3. Activate the Virtual Environment
+## 3. Activate Virtual Environment
 
-**Windows PowerShell:**
+### Windows PowerShell
 
 ```powershell
 .\venv\Scripts\Activate.ps1
 ```
 
-### 4. Install Dependencies
+## 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 5. Configure Environment Variables
+## 5. Configure Environment Variables
 
-Create a `.env` file based on:
-
-```text
-.env.example
-```
+Create a `.env` file using `.env.example` as a reference.
 
 Add the required API configuration.
 
-> 🔐 Never commit your real API keys to GitHub.
+> 🔐 Never upload real API keys or secrets to GitHub.
 
-### 6. Run the Application
+## 6. Run the Application
 
 ```bash
 python -m uvicorn app.main:app --reload
 ```
 
-Then open:
+Open:
 
 ```text
 http://127.0.0.1:8000
@@ -383,123 +500,82 @@ http://127.0.0.1:8000
 
 ---
 
-## 🧪 Assignment Implementation
+# 🧪 Assignment Coverage
 
-This project covers two major areas.
+This project implements the main requirements of the AI Document Question Answering assignment.
 
 ### Part 1 — Prompt Engineering
 
-Three prompting techniques are implemented:
-
 ```text
 Zero-Shot
+     ↓
 Few-Shot
+     ↓
 Role-Based
+     ↓
+Same Questions
+     ↓
+Accuracy / Clarity / Relevance
+     ↓
+Comparison
 ```
-
-The same set of questions can be tested against all three approaches and evaluated using:
-
-**Accuracy → Clarity → Relevance**
 
 ### Part 2 — Embeddings & Semantic Search
 
-The retrieval pipeline includes:
-
 ```text
 5+ Documents
-      ↓
-Text Chunking
-      ↓
+     ↓
+Chunking
+     ↓
 Sentence-Transformer
-      ↓
+     ↓
 Embeddings
-      ↓
+     ↓
 ChromaDB
-      ↓
+     ↓
 Question Embedding
-      ↓
+     ↓
 Semantic Search
-      ↓
+     ↓
 Top 3 Relevant Chunks
 ```
 
 ---
 
-## 🆚 RAG vs Fine-Tuning
+# 🎯 Learning Outcomes
 
-RAG and fine-tuning solve different problems.
+This project demonstrates practical understanding of:
 
-| RAG                                     | Fine-Tuning                         |
-| --------------------------------------- | ----------------------------------- |
-| Retrieves external knowledge            | Trains/adapts the model             |
-| Uses a knowledge base                   | Uses a training dataset             |
-| Model weights normally remain unchanged | Model parameters are updated        |
-| Easy to update document knowledge       | Requires additional training        |
-| Excellent for document-based QA         | Useful for behavior/task adaptation |
-
-### In this project
-
-We use **RAG**, not fine-tuning, to provide the LLM with relevant information from the document knowledge base at query time.
-
----
-
-## 🎯 Why This Project Matters
-
-Traditional document search often depends on exact keywords.
-
-This system goes further by understanding the **semantic relationship** between a question and document content.
-
-The result is a more intelligent workflow:
-
-```text
-Traditional Search
-      ↓
-Find matching words
-
-AI Document QA
-      ↓
-Understand meaning
-      ↓
-Retrieve relevant knowledge
-      ↓
-Generate contextual answer
-```
+* 🧠 Embeddings
+* 📐 Vectors
+* ✂️ Text Chunking
+* 🔎 Semantic Search
+* 🗄️ Vector Databases
+* 🟡 ChromaDB
+* 🔗 RAG
+* ✍️ Prompt Engineering
+* 0️⃣ Zero-Shot Prompting
+* 🎯 Few-Shot Prompting
+* 👨‍💻 Role-Based Prompting
+* 🤖 LLM Integration
+* ⚡ FastAPI
+* 🌐 AI Application Development
 
 ---
 
-## 📌 Learning Outcomes
-
-By building this project, the following concepts are demonstrated:
-
-* ✅ Vector representations
-* ✅ Text embeddings
-* ✅ Document chunking
-* ✅ Semantic similarity
-* ✅ Vector databases
-* ✅ ChromaDB
-* ✅ Retrieval-Augmented Generation
-* ✅ Prompt Engineering
-* ✅ Zero-shot prompting
-* ✅ Few-shot prompting
-* ✅ Role-based prompting
-* ✅ LLM-based question answering
-* ✅ FastAPI backend development
-
----
-
-## 👩‍💻 Developer
+# 👩‍💻 Developer
 
 <div align="center">
 
-### **Hania Eman**
+## Hania Eman
 
 **AI & Data Science Student | ML Developer | Python Enthusiast**
 
-Built with curiosity, experimentation, and a passion for Artificial Intelligence. ✨
+Building practical AI applications with Python, Machine Learning, NLP and Generative AI.
 
 <br>
 
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=3000&pause=1000&color=FFD700&center=true&vCenter=true&width=600&lines=Exploring+AI+%26+Data+Science;Building+with+Python;Learning+Machine+Learning;Creating+Intelligent+Applications" />
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=3000&pause=900&color=D4AF37&center=true&vCenter=true&width=650&lines=Learning+Artificial+Intelligence;Building+with+Python;Exploring+Machine+Learning;Creating+Intelligent+Applications" />
 
 </div>
 
@@ -507,12 +583,12 @@ Built with curiosity, experimentation, and a passion for Artificial Intelligence
 
 <div align="center">
 
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:111111,50:D4AF37,100:111111&height=140&section=footer&animation=fadeIn" width="100%"/>
+
 ### ✨ AI Document QA
 
 **Retrieve • Understand • Generate**
 
-<br>
-
-⭐ **Built with Python, RAG, Embeddings, ChromaDB & LLMs** ⭐
+*Built with Python, RAG, Embeddings, ChromaDB & LLMs.*
 
 </div>
