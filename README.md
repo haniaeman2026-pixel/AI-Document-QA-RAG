@@ -1,4 +1,3 @@
-# AI Document QA 🤎
 
 <p align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=0:E8D8C3,50:B89B7A,100:8B6F55&height=220&section=header&text=AI%20Document%20QA&fontSize=48&fontColor=3E3025&animation=fadeIn&fontAlignY=38&desc=Intelligent%20Document%20Question%20Answering%20System&descAlignY=60&descSize=18" width="100%"/>
